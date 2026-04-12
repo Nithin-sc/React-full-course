@@ -1,0 +1,21 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: min(600px, 100%);
+  height: 100vh;
+  margin-inline: auto;
+  padding: 16px 16px 0;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin: 8px 0 12px;
+  text-align: left;
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 12px;
+    height: 100svh;
+  }
+}
