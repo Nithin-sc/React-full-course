@@ -8,25 +8,31 @@ import { Routes, Route } from 'react-router'
 import './App.css'
 
 function App() {
-  const [cart,setCart] = useState([]);
-  
-      useEffect(()=>{
-        const getCartItems = async ()=>{
-          const response = await axios.get('/api/cart-items?expand=product');
-          setCart(response.data);
-        }
-          
-        getCartItems(); 
-      },[]);
+  const [cart, setCart] = useState([]);
+
+
+
+
+  useEffect(() => {
+    const getCartItems = async () => {
+      try {
+        const response = await axios.get('/api/cart-items?expand=product');
+        setCart(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getCartItems();
+  }, [cart]);
 
   return (
     <Routes>
-      <Route index element={<HomePage cart={cart} />} />
-      <Route path='checkout' element={<CheckOutPage cart={cart} />} />
-      <Route path='orders' element={<OrdersPage  cart={cart} />} />
-      <Route path='tracking' element={<TrackingPage/>}/>
+      <Route index element={<HomePage cart={cart}  />} />
+      <Route path='checkout' element={<CheckOutPage cart={cart}  />} />
+      <Route path='orders' element={<OrdersPage cart={cart} />} />
+      <Route path='tracking' element={<TrackingPage />} />
     </Routes>
-    
+
   )
 }
 
